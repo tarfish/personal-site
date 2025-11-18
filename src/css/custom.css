@@ -1,7 +1,28 @@
+@import "tailwindcss";
+
+
 header {
     background-color: rgb(23, 23, 23);
     color: white;
     text-align: center;
     padding: 10px 0px;
     font-size: 1.5rem;
+}
+
+a:hover {
+    color: #6f4d3d;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+body {
+    font-family: "Archivo", sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, #6f4d3d 0%, #cb9867 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #11521c;
 }
