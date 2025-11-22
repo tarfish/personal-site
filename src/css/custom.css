@@ -2,8 +2,8 @@
 
 
 header {
-    background-color: #fdfa72;
-    color: #FF8C00;
+    background-color: #dff3ff; /*light blue*/
+    color: #0066cc;           /*medium blue*/
     text-align: center;
     padding: 10px 0px;
     font-size: 4rem;
@@ -11,12 +11,12 @@ header {
 
 a {
     text-underline-offset: 2px;
-    color: #cb9867;
+    color: #8fb6d1;           /*muted light blue*/
     transition: color 0.1s ease;
 }
 
 a:hover {
-    color: #6f4d3d;
+    color: #2f4b6a;           /*dark desaturated blue*/
     text-decoration: underline;
     text-decoration-style: wavy;
 }
@@ -27,8 +27,8 @@ body {
     padding: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(180deg, #ffa200 0%, #ffc300 100%);
+    background: linear-gradient(180deg, #0073c9 0%, #4da3ff 100%); /*blue gradient*/
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #c56001;
+    color: #003b66;           /*deep blue*/
 }

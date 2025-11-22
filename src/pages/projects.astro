@@ -11,11 +11,11 @@ const repos = await res.json();
 </Layout>
 
 <div class="mt-12 mx-5 gap-8">
-	<div class="p-12 py-4 bg-[#fdfa72] border-4 border-[#FF8C00] rounded-lg justify-center items-center flex flex-col text-xl">
+	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
 		<Redirects />
 	</div>
 	<br>
-	<div class="p-12 py-4 bg-[#fdfa72] border-4 border-[#FF8C00] rounded-lg justify-center flex flex-col text-xl">
+	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
 		<p>you can click on these links to be redirected to the github repo :o</p>
 		{repos.map((repo) => (
 			<div class="mb-6">
