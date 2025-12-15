@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header * {
+    max-width: 100%;
+}
 
 header {
     background-color: #dff3ff;
     color: #0066cc;
     text-align: center;
-    padding: 10px 0px;
-    font-size: 4rem;
+    padding: 1rem;
+    font-size: clamp(3rem, 6vw, 4rem);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 body a {
@@ -44,4 +55,10 @@ body {
     display: block;
     height: auto;
     max-width: 100%;
+}
+
+.about-scroll {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.25rem;
 }
