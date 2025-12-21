@@ -62,3 +62,13 @@ body {
     overflow-y: auto;
     padding-right: 0.25rem;
 }
+
+.card-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.2s ease;
+}
+
+.card-3d:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
