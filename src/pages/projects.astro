@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 import { execSync } from "child_process";
+import Moving from "./moving.astro";
 
 export const prerender = false;
 
@@ -20,17 +21,20 @@ const commitDate = date.toLocaleDateString('en-US', {
   day: 'numeric' 
 });
 ---
-<header>my projects!</header>
+<body class="flex flex-col min-h-screen">
+<header><b>my projects!</b></header>
 
 <Layout title="projects">
 </Layout>
-
+<main class="flex-grow">
+<br>
+<Moving />
 <div class="mt-12 mx-5 gap-8">
   <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
     <Redirects />
   </div>
   <br>
-  <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
+  <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white card-3d">
     <p>5 latest repos pulled straight from github!</p>
     {latestRepos.map((repo) => (
       <div class="mb-6">
@@ -40,9 +44,11 @@ const commitDate = date.toLocaleDateString('en-US', {
     ))}
   </div>
 </div>
+</main>
 
 <footer class="text-center">
   <span class="lowercase">
     by sarvesh, Last updated: {commitDate} (commit {commitHash})
   </span>
 </footer>
+</body>

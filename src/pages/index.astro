@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Redirects from '../pages/Redirects.astro';
 import About from '../pages/about.astro';
 import { execSync } from 'child_process';
+import Moving from './moving.astro';
 
 const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
 const commitDateRaw = execSync('git log -1 --format=%cd --date=short').toString().trim();
@@ -14,14 +15,15 @@ const commitDate = date.toLocaleDateString('en-US', {
 	day: 'numeric' 
 });
 ---
-
-<header>hey, i'm sarvesh!</header>
+<body class="flex flex-col min-h-screen">
+<header><b>hey, i'm sarvesh!</b></header>
 <Layout title="home">
 <div class="container">
 	<h1 class="text-center">welcome to my home!</h1>
 </div>
 </Layout>
-
+<main class="flex-grow">
+<Moving />
 <div class="mt-12 mx-5 gap-8">
 	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
 		<Redirects />
@@ -31,4 +33,6 @@ const commitDate = date.toLocaleDateString('en-US', {
 		<About />
 	</div>
 </div>
+</main>
 <footer class="text-center"><span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span></footer>
+</body>

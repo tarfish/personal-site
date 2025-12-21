@@ -1,44 +1,38 @@
-if (typeof window === "undefined") return;
+if (typeof window === "undefined") throw new Error("tilt.js loaded on server");
 
 window.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".card-3d");
+  document.querySelectorAll(".card-3d").forEach(card => {
+    let cx = 0, cy = 0, tx = 0, ty = 0;
+    const max = 7;
+    const ease = 0.1;
+    const depth = 10;
 
-  cards.forEach(card => {
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    const maxTilt = 10;
-    const ease = 0.08;
-
-    function animate() {
-      currentX += (targetX - currentX) * ease;
-      currentY += (targetY - currentY) * ease;
-
+    const loop = () => {
+      cx += (tx - cx) * ease;
+      cy += (ty - cy) * ease;
       card.style.transform = `
-        rotateX(${currentX}deg)
-        rotateY(${currentY}deg)
-        translateZ(20px)
+        perspective(1200px)
+        rotateX(${cx}deg)
+        rotateY(${cy}deg)
+        translateZ(${depth}px)
       `;
+      requestAnimationFrame(loop);
+    };
 
-      requestAnimationFrame(animate);
-    }
-
-    animate();
+    loop();
 
     card.addEventListener("mousemove", e => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const r = card.getBoundingClientRect();
+      const offsetX = (e.clientX - r.left) / r.width - 0.5;
+      const offsetY = (e.clientY - r.top) / r.height - 0.5;
 
-      targetX = -y * maxTilt;
-      targetY = x * maxTilt;
+      tx = -offsetY * max;
+      ty = offsetX * max;
     });
 
     card.addEventListener("mouseleave", () => {
-      targetX = 0;
-      targetY = 0;
+      tx = 0;
+      ty = 0;
     });
   });
 });

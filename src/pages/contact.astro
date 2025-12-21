@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 import Contacts from "../pages/contacts.astro";
+import Moving from "./moving.astro";
 import { execSync } from "child_process";
 const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
 const commitDateRaw = execSync('git log -1 --format=%cd --date=short').toString().trim();
@@ -14,18 +15,24 @@ const commitDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<header>contact me!</header>
+<body class="flex flex-col min-h-screen">
+<header><b>contact me!</b></header>
 
 <Layout title="contact">
 </Layout>
 
+<main class="flex-grow">
+<br>
+<Moving />
 <div class="mt-12 mx-5 gap-8">
 	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
 		<Redirects />
 	</div>
 	<br>
-	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
+	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white card-3d">
 		<Contacts />
 	</div>
 </div>
+</main>
 <footer class="text-center"><span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span></footer>
+</body>

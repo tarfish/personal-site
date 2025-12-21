@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 import Butt0Ns from "./butt0ns.astro";
+import Moving from "./moving.astro";
 import { execSync } from "child_process";
 const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
 const commitDateRaw = execSync('git log -1 --format=%cd --date=short').toString().trim();
@@ -13,12 +14,15 @@ const commitDate = date.toLocaleDateString('en-US', {
 	day: 'numeric' 
 });
 ---
-
-<header>cool buttons!</header>
+<body class="flex flex-col min-h-screen">
+<header><b>cool buttons!</b></header>
 
 <Layout title="buttons">
 </Layout>
 
+<main class="flex-grow">
+<br>
+<Moving />
 <div class="mt-12 mx-5 gap-8">
 	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
 		<Redirects />
@@ -26,4 +30,6 @@ const commitDate = date.toLocaleDateString('en-US', {
 	<br>
 	<Butt0Ns />
 </div>
+</main>
 <footer class="text-center"><span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span></footer>
+</body>
