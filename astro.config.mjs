@@ -7,7 +7,6 @@ import vercel from '@astrojs/vercel';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: 'https://tarfish.github.io',
   output: 'server',
   adapter: vercel(),
   vite: {
