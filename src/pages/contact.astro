@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 import Contacts from "../pages/contacts.astro";
 import Moving from "./moving.astro";
-import { execSync } from "child_process";
+
 const commitHash = import.meta.env.VERCEL_GIT_COMMIT_SHA
   ? import.meta.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)
   : "dev";
@@ -19,25 +19,56 @@ const commitDate = date.toLocaleDateString("en-US", {
   day: "numeric",
 });
 ---
-
-<body class="flex flex-col min-h-screen">
-<header><b>contact me!</b></header>
-
 <Layout title="contact">
-</Layout>
+  <header><b>contact me!</b></header>
 
-<main class="flex-grow">
-<br>
-<Moving />
-<div class="mt-12 mx-5 gap-8">
-	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
-		<Redirects />
-	</div>
-	<br>
-	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white card-3d">
-		<Contacts />
-	</div>
-</div>
-</main>
-<footer class="text-center"><span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span></footer>
-</body>
+  <main class="flex-grow">
+    <br>
+    <Moving />
+
+    <div class="mt-12 mx-5 gap-8">
+      <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
+        <Redirects />
+      </div>
+
+      <br>
+
+      <div class="p-12 py-4 card-3d bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
+        <Contacts />
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center">
+    <span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span>
+  </footer>
+
+  <script type="module" client:load>
+    document.querySelectorAll(".card-3d").forEach(card => {
+      let cx = 0, cy = 0, tx = 0, ty = 0;
+      const max = 7, ease = 0.1, depth = 10;
+
+      const loop = () => {
+        cx += (tx - cx) * ease;
+        cy += (ty - cy) * ease;
+        card.style.transform = `
+          perspective(1200px)
+          rotateX(${cx}deg)
+          rotateY(${cy}deg)
+          translateZ(${depth}px)
+        `;
+        requestAnimationFrame(loop);
+      };
+
+      loop();
+
+      card.addEventListener("mousemove", e => {
+        const r = card.getBoundingClientRect();
+        tx = -((e.clientY - r.top) / r.height - 0.5) * max;
+        ty = ((e.clientX - r.left) / r.width - 0.5) * max;
+      });
+
+      card.addEventListener("mouseleave", () => { tx = 0; ty = 0; });
+    });
+  </script>
+</Layout>

@@ -1,12 +1,48 @@
-<div class="ticker-bar overflow-hidden bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-2 border-blue-900 text-yellow-300 font-bold">
-  <div class="ticker-track flex space-x-6">
-    <div class="ticker-item">made by sarvesh</div>
-    <div class="ticker-item">boxes have a cool parallax effect!</div>
-    <div class="ticker-item">this is a wip!</div>
-    <div class="ticker-item">:D</div>
-    <div class="ticker-item">astro is fun</div>
-    <div class="ticker-item">tailwind css is very useful</div>
-    <div class="ticker-item">shawarma is yummy</div>
-    <div class="ticker-item">this thing moves, IT'S SO COOL</div>
+<div class="ticker-bar overflow-hidden bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-2 border-blue-900 text-yellow-300">
+  <div class="ticker-track flex flex-nowrap">
+    <div class="ticker-item inline-block mr-6">made by sarvesh</div>
+    <div class="ticker-item inline-block mr-6">boxes have a cool parallax effect!</div>
+    <div class="ticker-item inline-block mr-6">this is a wip!</div>
+    <div class="ticker-item inline-block mr-6">:D</div>
+    <div class="ticker-item inline-block mr-6">astro is fun</div>
+    <div class="ticker-item inline-block mr-6">tailwind css is very useful</div>
+    <div class="ticker-item inline-block mr-6">shawarma is yummy</div>
+    <div class="ticker-item inline-block mr-6">this thing moves, IT'S SO COOL</div>
   </div>
 </div>
+
+<script type="module" client:load>
+  const tickerBar = document.querySelector(".ticker-bar");
+  const track = tickerBar.querySelector(".ticker-track");
+  const speed = 1;
+
+  const items = Array.from(track.children);
+  items.forEach(item => track.appendChild(item.cloneNode(true)));
+
+  let translateX = 0;
+
+  function loop() {
+    translateX -= speed;
+    if (translateX <= -track.scrollWidth / 2) translateX = 0;
+    track.style.transform = `translateX(${translateX}px)`;
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+</script>
+
+<style>
+.ticker-bar {
+  width: 100%;
+}
+
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.ticker-item {
+  flex-shrink: 0;
+}
+</style>
