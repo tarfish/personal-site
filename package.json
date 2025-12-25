@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "vercel-build": "node scripts/set-commit-env.js && astro build",
+    "vercel-build": "astro build",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
