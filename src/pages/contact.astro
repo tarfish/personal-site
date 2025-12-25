@@ -4,14 +4,19 @@ import Redirects from "../pages/Redirects.astro";
 import Contacts from "../pages/contacts.astro";
 import Moving from "./moving.astro";
 import { execSync } from "child_process";
-const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
-const commitDateRaw = execSync('git log -1 --format=%cd --date=short').toString().trim();
+const commitHash = import.meta.env.VERCEL_GIT_COMMIT_SHA
+  ? import.meta.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)
+  : "dev";
+
+const commitDateRaw = import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP
+  ? new Date(import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP).toISOString().split("T")[0]
+  : new Date().toISOString().split("T")[0];
 
 const date = new Date(commitDateRaw);
-const commitDate = date.toLocaleDateString('en-US', { 
-	year: 'numeric',
-	month: 'long', 
-	day: 'numeric' 
+const commitDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 ---
 
