@@ -1,10 +1,23 @@
-<h1 class="text-3xl text-white">my button!</h1>
+<h1 class="text-3xl text-white">my button! (click to copy)</h1>
 <img
-  src="/assets/sarvesh-button.gif"
+  src="https://www.sarvesh.rocks/assets/sarvesh-button.gif"
   alt="sarvesh's button"
   width="88"
   height="31"
+  onclick="copyButton()"
+  style="cursor: pointer;"
 />
+
+<script>
+  function copyButton() {
+    const html = '<img src="https://www.sarvesh.rocks/assets/sarvesh-button.gif" alt="sarvesh\'s button" width="88" height="31" />';
+    navigator.clipboard.writeText(html).then(() => {
+      alert('Button HTML copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy');
+    });
+  }
+</script>
 <br>
   <h1 class="text-3xl text-white">other hackclubbers</h1>
 <div class="buttons">

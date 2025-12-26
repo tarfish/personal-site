@@ -39,6 +39,7 @@ const commitDate = date.toLocaleDateString("en-US", {
 		<div class="card-3d">
         	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
             <About />
+            <pagering-link theme="dark"></pagering-link>
         </div>
         </div>
       </div>
@@ -77,4 +78,5 @@ const commitDate = date.toLocaleDateString("en-US", {
       card.addEventListener("mouseleave", () => { tx = 0; ty = 0; });
     });
   </script>
+  <script src="https://pagering.gideon.sh/embed.js" defer></script>
 </Layout>
